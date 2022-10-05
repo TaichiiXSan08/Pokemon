@@ -373,4 +373,6 @@ public class TypeMatchupController {
 			return true;
 		}
 	}
+
+	
 }
