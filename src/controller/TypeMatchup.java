@@ -35,36 +35,8 @@ public class TypeMatchup {
 			else
 				pokemon.displayPokemon2();
 
-			resistanceScore = controller.determineResistances(pokemonTypes, pokemon);
-
-			weaknessScore = controller.determineWeaknesses(pokemonTypes, pokemon);
-
-			immunityScore = controller.determineImmunity(pokemonTypes, pokemon);
-
-			/*
-			 * System.out.println("immunity"); for(String a : immunityScore.keySet()) {
-			 * if(a.equalsIgnoreCase("dragon") || a.equalsIgnoreCase("flying"))
-			 * System.out.println(); System.out.print(a + " - " + immunityScore.get(a) +
-			 * "\t"); }
-			 */
-
-			for (String a : resistanceScore.keySet()) {
-				double finalValue = 0, absoluteDifferenceValue = 0;
-				absoluteDifferenceValue = Math.abs(resistanceScore.get(a) - weaknessScore.get(a));
-
-				if (immunityScore.get(a) == 0)
-					finalValue = 0;
-				else if (resistanceScore.get(a) > weaknessScore.get(a))
-					finalValue = 0.5 / absoluteDifferenceValue;
-				else if (resistanceScore.get(a) < weaknessScore.get(a))
-					finalValue = absoluteDifferenceValue * 2;
-				else
-					finalValue = 1;
-
-				if (a.equalsIgnoreCase("dragon") || a.equalsIgnoreCase("flying"))
-					System.out.println();
-				System.out.print(a + " - " + finalValue + "\t");
-			}
+			controller.determineDefensiveValues(pokemon);
+			
 			do {
 				menu.askToContinue();
 				input = sc.next();
